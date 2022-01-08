@@ -8,7 +8,7 @@ import csv
 from kenpompy.utils import login
 
 # Returns an authenticated browser that can then be used to scrape pages that require authorization.
-browser = login("jwall5678@outlook.com", "5253Jake1601#1!")
+browser = login("jwall5678@outlook.com", "NCAAProject1")
 
 import kenpompy.summary as kp
 import kenpompy.misc
