@@ -41,7 +41,26 @@ mm_18 = mm_data.loc[mm_data["Year"] == 2018]
 mm_19 = mm_data.loc[mm_data["Year"] == 2019]
 
 
+final_df = pd.DataFrame()
+for year in data_dict.keys():
+    temp_df = data_dict[year][0]
+    first_df = True
+    for df in data_dict[year]:
+        if (first_df):
+            first_df = False
+        else:
+            temp_df = temp_df.merge(df, left_on = 'Team', right_on = 'Team', how = 'inner')
+    temp_df['Year'] = year
+    final_df = final_df.append(temp_df)
+    
 
+temp_df['Team'].values.to_list() not in gen_stats['Team'].values.to_list()
+
+
+teams = []
+for team in gen_stats['Team'].values.tolist():
+    if (team not in temp_df['Team'].values.tolist()):
+        teams.append(team)
 
 
 
