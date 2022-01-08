@@ -6,20 +6,17 @@ Predicting NCAA Tourney Results
 import pandas as pd
 import csv
 from kenpompy.utils import login
+import kenpompy.summary as kp
+import kenpompy.misc
 
 # Returns an authenticated browser that can then be used to scrape pages that require authorization.
 browser = login("jwall5678@outlook.com", "NCAAProject1")
 
-import kenpompy.summary as kp
-import kenpompy.misc
-
-# Returns a pandas dataframe containing the efficiency and tempo stats for the current season (https://kenpom.com/summary.php).
-
+# we will be using the '15-16 through 18'-19' for our initial research
 years = ["2016", "2017", "2018", "2019"]
-
 data_dict = {}
 
-
+# for loop to read in various kenpom statistics (tables) and put them together in a list for each year
 for year in years:
     gen_stats = kenpompy.misc.get_pomeroy_ratings(browser, season = year)
     eff_stats = kp.get_efficiency(browser, season = year)
@@ -29,19 +26,22 @@ for year in years:
     stats = [gen_stats, eff_stats, four_factors, roster_stats, misc_stats]
     data_dict[year] = stats
     
-
+# indices s for stat tables
 gen = 0    
 eff = 1
 fac = 2
 ros = 3
 misc = 4
 
-
+# reading in march tournament data
 mm_data = pd.read_csv("Big_Dance_CSV.csv")
 mm_16 = mm_data.loc[mm_data["Year"] == 2016]
 mm_17 = mm_data.loc[mm_data["Year"] == 2017]
 mm_18 = mm_data.loc[mm_data["Year"] == 2018]
 mm_19 = mm_data.loc[mm_data["Year"] == 2019]
+
+
+
 
 
 
