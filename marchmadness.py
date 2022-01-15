@@ -88,13 +88,7 @@ for year in data_dict.keys():
     final_df = final_df.append(temp_df)
 
 
-teams = []
-for team in gen_stats['Team'].values.tolist():
-    if (team in temp_df['Team'].values.tolist()):
-        teams.append(team)
-df[~df['A'].isin([3, 6])]
 
-four_factors.loc[~four_factors['Team'].isin(teams)]
 
 
 
